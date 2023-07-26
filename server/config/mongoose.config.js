@@ -11,5 +11,5 @@ mongoose.connect(connectionString, {
     // force new topology use
     useUnifiedTopology: true
 })
-.then(()=>console.log(`>>ESTABLISHED CONNECTION TO: ${ATLAS_CLUSTER}\n>>DATABASE: ${ATLAS_DB}`))
+.then(()=>console.log(`>>ESTABLISHED CONNECTION TO CLUSTER: ${ATLAS_CLUSTER}, DATABASE: ${ATLAS_DB}`))
 .catch(err=>console.log(`Mongo connection failed!`, err))

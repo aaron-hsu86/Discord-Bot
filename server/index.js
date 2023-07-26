@@ -45,6 +45,7 @@ for (const file of eventFiles) {
 	}
 }
 
+
 app.listen(PORT, () => console.log(`>> Server Online! Listening to PORT: ${PORT}`))
 
 client.login(token);
