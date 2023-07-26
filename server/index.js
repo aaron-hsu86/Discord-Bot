@@ -8,7 +8,7 @@ require('./config/mongoose.config')
 const cors = require('cors');
 const express = require('express');
 const app = express();
-app.use(express.json(), express.urlencoded({extended:true}), cors());
+app.use(express.json(), express.urlencoded({ extended: true }), cors());
 const routeAttacher = require('./routes/discord.routes');
 routeAttacher(app);
 
@@ -36,15 +36,21 @@ const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
-	const filePath = path.join(eventsPath, file);
-	const event = require(filePath);
-	if (event.once) {
-		client.once(event.name, (...args) => event.execute(...args));
-	} else {
-		client.on(event.name, (...args) => event.execute(...args));
-	}
+    const filePath = path.join(eventsPath, file);
+    const event = require(filePath);
+    if (event.once) {
+        client.once(event.name, (...args) => event.execute(...args));
+    } else {
+        client.on(event.name, (...args) => event.execute(...args));
+    }
 }
 
+client.on('message', message => {
+
+    // if(command === 'ping'){
+        message.channel.sendMessage('pong!');
+    // }
+});
 
 app.listen(PORT, () => console.log(`>> Server Online! Listening to PORT: ${PORT}`))
 
