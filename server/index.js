@@ -1,7 +1,16 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
-const { token } = require('./config.json');
+const { token, PORT } = require('./config.json');
+
+// setup Mongoose backend info
+require('./config/mongoose.config')
+const cors = require('cors');
+const express = require('express');
+const app = express();
+app.use(express.json(), express.urlencoded({extended:true}), cors());
+const routeAttacher = require('./routes/discord.routes');
+routeAttacher(app);
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -35,7 +44,7 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
-console.log(client);
 
+app.listen(PORT, () => console.log(`>> Server Online! Listening to PORT: ${PORT}`))
 
 client.login(token);
