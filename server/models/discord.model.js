@@ -1,8 +1,24 @@
 const mongoose = require('mongoose')
 
-const DiscordAppSchema = new mongoose.Schema({
+const GamesSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: [true, 'Game is required'],
+        minlength: [2, 'Title must be at least 2 characters long']
+    },
+    genre: {
+        type: String,
+        minlength: [2, 'Genre must be at least 2 characters long']
+    },
+    description: {
+        type: String,
+        maxlength: [250, 'Please limit description to 250 characters']
+    },
+    emote: {
+        type: String
+    }
 
 }, {timestamps: true})
 
-const DiscordApp = mongoose.model("DiscordApp", DiscordAppSchema)
-module.exports = DiscordApp
+const Games = mongoose.model("Games", GamesSchema)
+module.exports = Games

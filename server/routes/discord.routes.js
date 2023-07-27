@@ -1,10 +1,10 @@
-const DiscordApp = require('../controllers/discord.controller')
+const Games = require('../controllers/discord.controller')
 
 module.exports = app => {
-    app.get('/', DiscordApp.test)
-    app.get('/api', DiscordApp.all)
-    app.post('/api', DiscordApp.create)
-    app.get('/api/:id', DiscordApp.one)
-    app.put('/api/:id', DiscordApp.update)
-    app.delete('/api/:id', DiscordApp.delete)
+    app.get('/', Games.test)
+    app.get('/api/games', Games.all)
+    app.post('/api/games', Games.create)
+    app.get('/api/games/:id', Games.one)
+    app.put('/api/games/:id', Games.update)
+    app.delete('/api/games/:id', Games.delete)
 }

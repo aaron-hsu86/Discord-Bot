@@ -1,24 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route, Link } from 'react-router-dom'
+import Dashboard from './views/Dashboard';
+import Games from '../../server/commands/fun/games';
+import GamesOne from './views/GamesOne';
+import GamesEdit from './views/GamesEdit';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Welcome to the Discord Bot</h1>
+      <div>
+        <Link to={'/'}>Dashboard</Link>
+        |
+        <Link to={'/games'}>Games List</Link>
+      </div>
+      <Routes>
+        <Route path='/' element={<Dashboard />} />
+        <Route path='/games' element={<Games />} />
+        <Route path='/games/:id' element={<GamesOne />} />
+        <Route path='/games/edit/:id/' element={<GamesEdit />} />
+      </Routes>
+
+    </>
   );
 }
 

@@ -1,0 +1,3 @@
+# go back to server folder
+# run to update slash commands with new files > 
+node deploy-commands.js

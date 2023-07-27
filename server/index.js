@@ -12,7 +12,14 @@ app.use(express.json(), express.urlencoded({ extended: true }), cors());
 const routeAttacher = require('./routes/discord.routes');
 routeAttacher(app);
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ 
+    intents: [
+        GatewayIntentBits.Guilds, 
+        GatewayIntentBits.GuildMessages, 
+        GatewayIntentBits.GuildMessageReactions, 
+        GatewayIntentBits.MessageContent
+    ]
+});
 
 client.commands = new Collection();
 const foldersPath = path.join(__dirname, 'commands');
@@ -45,12 +52,23 @@ for (const file of eventFiles) {
     }
 }
 
-client.on('message', message => {
+client.on('messageCreate', async (msg) => {
+    // This block will prevent the bot from responding to itself and other bots
+    if (msg.author.bot) {
+        return
+    }
 
-    // if(command === 'ping'){
-        message.channel.sendMessage('pong!');
-    // }
-});
+    // Check if the message starts with '!hello' and respond with 'world!' if it does.
+    if (msg.content.startsWith("!hello")) {
+        // reply to message
+        // msg.reply({ content: 'world!' });
+        // send message back to channel msg was sent in
+        msg.channel.send('hello back')
+    }
+    if (msg.content === '!delete'){
+        msg.delete();
+    }
+})
 
 app.listen(PORT, () => console.log(`>> Server Online! Listening to PORT: ${PORT}`))
 
