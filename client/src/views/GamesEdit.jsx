@@ -53,7 +53,7 @@ const GamesEdit = () => {
 
     const handleDelete = e => {
         axios.delete(`http://localhost:8000/api/games/${id}`)
-            .then( () => navigate('/') )
+            .then( () => navigate('/games') )
             .catch( err => console.log(err) )
     }
 

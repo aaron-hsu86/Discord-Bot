@@ -77,13 +77,9 @@ client.on('messageCreate', async (msg) => {
     }
     if (msg.content === '!test'){
         
-        // app.get(`http://localhost:8000/api/games`)
-        //     .then( res => {
-        //         console.log(res)
-        //     })
-        //     .catch( err => console.log(err) )
-        
         msg.channel.send('test')
+        msg.reply('test1')
+        msg.reply({content:'test2', ephemeral: true})
     }
 })
 

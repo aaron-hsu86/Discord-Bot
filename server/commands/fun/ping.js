@@ -6,5 +6,6 @@ module.exports = {
         .setDescription('Replies with Pong!'),
     async execute(interaction) {
         await interaction.reply('Pong!');
+        await interaction.followUp({content: 'Secret Pong!', ephemeral: true})
     },
 };

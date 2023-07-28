@@ -26,7 +26,7 @@ const GamesAdd = () => {
     const handleSubmit = e => {
         e.preventDefault();
         axios.post(`http://localhost:8000/api/games`, formData)
-            .then( () => navigate('/') )
+            .then( () => navigate('/games') )
             .catch( err => {
                 let errors = err.response.data.errors
                 for (let key in errors){
