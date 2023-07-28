@@ -2,7 +2,11 @@ import React from 'react'
 
 const Dashboard = () => {
     return (
-        <div>Dashboard</div>
+        <>
+        <h1>Dashboard</h1>
+        <p>Temporary Front-End for Discord Bot</p>
+        <p>Add games to list of games we play</p>
+        </>
     )
 }
 

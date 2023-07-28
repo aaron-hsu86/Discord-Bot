@@ -3,11 +3,12 @@ const mongoose = require('mongoose')
 const GamesSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: [true, 'Game is required'],
+        required: [true, 'Title is required'],
         minlength: [2, 'Title must be at least 2 characters long']
     },
     genre: {
         type: String,
+        required: [true, 'Please provide genre'],
         minlength: [2, 'Genre must be at least 2 characters long']
     },
     description: {

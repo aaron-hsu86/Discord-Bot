@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, GatewayIntentBits, Emoji } = require('discord.js');
 const { token, PORT } = require('./config.json');
 
 // setup Mongoose backend info
@@ -67,6 +67,23 @@ client.on('messageCreate', async (msg) => {
     }
     if (msg.content === '!delete'){
         msg.delete();
+    }
+    if (msg.content.startsWith('!love')){
+        console.log('hello')
+        // const heart = client.guilds.emojis.cache.find(emoji => emoji.name === "heart");
+        // console.log(client.guilds)
+        // console.log(heart)
+        msg.react('❤️')
+    }
+    if (msg.content === '!test'){
+        
+        // app.get(`http://localhost:8000/api/games`)
+        //     .then( res => {
+        //         console.log(res)
+        //     })
+        //     .catch( err => console.log(err) )
+        
+        msg.channel.send('test')
     }
 })
 
