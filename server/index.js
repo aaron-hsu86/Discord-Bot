@@ -21,6 +21,7 @@ const client = new Client({
     ]
 });
 
+// Slash commands in Commands folder
 client.commands = new Collection();
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
@@ -39,6 +40,7 @@ for (const folder of commandFolders) {
     }
 }
 
+// Commands in events folder
 const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
@@ -105,6 +107,24 @@ client.on('messageCreate', async (msg) => {
     //     const GaryPls = client.emojis.find(emoji => emoji.name === "GaryPls");
     //     msg.react(GaryPls.id);
     // }
+
+    if (msg.content.toLowerCase().startsWith('!roll')){
+        
+        let nums = []
+        let rollsplit = msg.content.toLowerCase().split(' ').filter(word => word !== '!roll')
+        let dice = rollsplit[0].split('d')
+        let i = 1
+        if (dice.length < 2) return 'use proper format'
+        if (dice[0] === ''){
+            nums.push( Math.ceil( Math.random()*parseInt( dice[1] ) ) )
+            msg.reply(`rolls: ${nums.toString()}`)
+        } else {
+            for (j = 0; j < dice[0]; j++){
+                nums.push(Math.ceil(Math.random()*parseInt(dice[1])))
+            }
+            msg.reply(`rolls: ${nums.toString()}`)
+        }
+    }
 
 
 })
