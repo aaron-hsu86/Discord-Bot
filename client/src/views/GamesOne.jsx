@@ -17,7 +17,6 @@ const GamesOne = () => {
     const getGameInfo = () => {
         getOne(id)
             .then( res => {
-                console.log(res)
                 setGameData(res)
             })
             .catch( err => console.log(err))

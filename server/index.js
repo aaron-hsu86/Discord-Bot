@@ -12,12 +12,12 @@ app.use(express.json(), express.urlencoded({ extended: true }), cors());
 const routeAttacher = require('./routes/discord.routes');
 routeAttacher(app);
 
-const client = new Client({ 
+const client = new Client({
     intents: [
-        GatewayIntentBits.Guilds, 
-        GatewayIntentBits.GuildMessages, 
-        GatewayIntentBits.GuildMessageReactions, 
-        GatewayIntentBits.MessageContent
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildMessageReactions,
+        GatewayIntentBits.MessageContent,
     ]
 });
 
@@ -65,22 +65,48 @@ client.on('messageCreate', async (msg) => {
         // send message back to channel msg was sent in
         msg.channel.send('hello back')
     }
-    if (msg.content === '!delete'){
+    if (msg.content === '!delete') {
         msg.delete();
     }
-    if (msg.content.startsWith('!love')){
-        console.log('hello')
-        // const heart = client.guilds.emojis.cache.find(emoji => emoji.name === "heart");
-        // console.log(client.guilds)
-        // console.log(heart)
+    if (msg.content.startsWith('!love')) {
         msg.react('❤️')
     }
-    if (msg.content === '!test'){
-        
-        msg.channel.send('test')
-        msg.reply('test1')
-        msg.reply({content:'test2', ephemeral: true})
+    if (msg.content === '!test') {
+        // msg.channel.send('test')
+        msg.reply('What you want?')
+        const GaryPls = client.emojis.find(emoji => emoji.name === "GaryPls");
+        // msg.react(GaryPls.id);
     }
+
+    if (msg.content.toLowerCase().includes('good boy')) {
+        if (msg.content.includes('?')) {
+            msg.channel.send('Woof?');
+            return;
+        }
+        else if (msg.content.includes('!')) {
+            msg.channel.send('Woof! Woof!');
+            return;
+        }
+        else {
+            msg.channel.send('Woof!');
+            return;
+        }
+    }
+    if (msg.content.toLowerCase().includes('toby')) {
+        msg.channel.send('Woof!');
+        return;
+    }
+
+    //if anyone types "Gary" and "wtf" or a combo of what, fuck, and hell, bot witll respond with GaryPls emoji
+    // if (msg.content.toLowerCase().includes('gary') &&
+    //     (msg.content.toLowerCase().includes('wtf') ||
+    //     msg.content.toLowerCase().includes('pls') ||
+    //     (msg.content.toLowerCase().includes('what') && (msg.content.toLowerCase().includes('fuck') || msg.content.toLowerCase().includes('hell') ) ) ) ) {
+    //     const GaryPls = client.emojis.find(emoji => emoji.name === "GaryPls");
+    //     msg.react(GaryPls.id);
+    // }
+
+
 })
 
 app.listen(PORT, () => console.log(`>> Server Online! Listening to PORT: ${PORT}`))

@@ -10,6 +10,7 @@ module.exports = {
         JokeAPI.getJokes()
             .then((body) => body.json())
             .then((data) => {
+                // console.log(data)
                 if (data.type === 'twopart'){
                     interaction.reply(`${data.setup}\n||${data.delivery}||`)
                 } else {
