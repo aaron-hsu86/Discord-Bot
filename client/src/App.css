@@ -1,4 +1,26 @@
+.header {
+  padding: 20px;
+}
 
+.navigation {
+  display: flex;
+  gap: 10px;
+}
+
+.barrier {
+  margin-left: 20px;
+}
+
+.links {
+  margin-left: 20px;
+  text-decoration: none;
+  color: black;
+  /* text-decoration: underline; */
+}
+
+.dashboard {
+  margin-left: 20px;
+}
 
 .errMsg {
   padding: 0;

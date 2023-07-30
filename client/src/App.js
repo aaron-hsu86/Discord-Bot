@@ -9,14 +9,17 @@ import GamesAdd from './views/GamesAdd';
 function App() {
   return (
     <>
+      <div className='header'>
       <h1>Welcome to the Discord Bot: Toby_Bot</h1>
-      <div>
-        <Link to={'/'}>Dashboard</Link>
-        |
-        <Link to={'/games'}>Games List</Link>
-        |
-        <Link to={'/games/add'}>Add a Game</Link>
-      </div>
+        <div className='navigation'>
+          <Link className='links' to={'/'}><p>Dashboard</p></Link>
+          <p className='barrier'>|</p>
+          <Link className='links' to={'/games'}><p>Games List</p></Link>
+          <p className='barrier'>|</p>
+          <Link className='links' to={'/games/add'}><p>Add a Game</p></Link>
+        </div>
+      </div> 
+      <hr/>
       <Routes>
         <Route path='/' element={<Dashboard />} />
         <Route path='/games' element={<Games />} />
