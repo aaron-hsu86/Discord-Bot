@@ -56,15 +56,10 @@ for (const file of eventFiles) {
 
 client.on('messageCreate', async (msg) => {
     // This block will prevent the bot from responding to itself and other bots
-    if (msg.author.bot) {
-        return
-    }
+    if (msg.author.bot) return
 
     // Check if the message starts with '!hello' and respond with 'world!' if it does.
     if (msg.content.startsWith("!hello")) {
-        // reply to message
-        // msg.reply({ content: 'world!' });
-        // send message back to channel msg was sent in
         msg.channel.send('hello back')
     }
     if (msg.content === '!delete') {
