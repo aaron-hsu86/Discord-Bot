@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
-import axios from 'axios'
 import { getOne, deleteOne } from '../services/games-service'
 
 const GamesOne = () => {
@@ -14,10 +13,11 @@ const GamesOne = () => {
         description: ''
     });
 
-    const getGameInfo = () => {
+    const getGameData = () => {
         getOne(id)
             .then( res => {
                 setGameData(res)
+                setLoaded(true)
             })
             .catch( err => console.log(err))
     }
@@ -25,24 +25,6 @@ const GamesOne = () => {
     const deleteGame = () => {
         deleteOne(id)
             .then( () => navigate('/games') )
-            .catch( err => console.log(err))
-    }
-
-    const clearInfo = () => {
-        setGameData({
-            title: '',
-            genre: '',
-            emote: '',
-            description: ''
-        })
-    }
-
-    const getGameData = () => {
-        axios.get(`http://localhost:8000/api/games/${id}`)
-            .then( res => {
-                setGameData(res.data)
-                setLoaded(true)
-            })
             .catch( err => console.log(err))
     }
 
@@ -62,8 +44,6 @@ const GamesOne = () => {
                 </div>
             </fieldset>
             :<></>}
-            <button onClick={getGameInfo}>test modularized services</button>
-            <button onClick={clearInfo}>Clear info</button>
         </div>
     )
 }

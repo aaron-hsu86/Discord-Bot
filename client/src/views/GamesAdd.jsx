@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import GameForm from '../components/GameForm';
-import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
+import { createOne } from '../services/games-service'
 
 const GamesAdd = () => {
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ const GamesAdd = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        axios.post(`http://localhost:8000/api/games`, formData)
+        createOne(formData)
             .then( () => navigate('/games') )
             .catch( err => {
                 let errors = err.response.data.errors

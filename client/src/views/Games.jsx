@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
 import GamesList from '../components/GamesList'
+import { getAll } from '../services/games-service'
 
 const Games = () => {
     const [gamesList, setGamesList] = useState([]);
 
     const getAllGames = () => {
-        axios.get(`http://localhost:8000/api/games`)
-            .then(res => setGamesList(res.data))
+        getAll()
+            .then(res => setGamesList(res))
             .catch(err => console.log(err))
     }
 

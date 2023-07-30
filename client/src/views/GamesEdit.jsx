@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import GameForm from '../components/GameForm'
-import axios from 'axios'
 import {useNavigate, useParams} from 'react-router-dom'
+import { getOne, updateOne, deleteOne } from '../services/games-service'
 
 const GamesEdit = () => {
-    const navigate = useNavigate();
     const {id} = useParams();
-
+    const navigate = useNavigate();
     const [loaded, setLoaded] = useState(false)
     const [formError, setFormError] = useState({
         title: '',
@@ -22,12 +21,12 @@ const GamesEdit = () => {
     })
 
     const getGameData = () => {
-        axios.get(`http://localhost:8000/api/games/${id}`)
-            .then(res => {
-                setLoaded(true);
-                setFormData(res.data);
-                })
-            .catch(err => console.log(err))
+        getOne(id)
+            .then( res => {
+                setFormData(res)
+                setLoaded(true)
+            })
+            .catch( err => console.log(err))
     }
 
     useEffect(getGameData, [id])
@@ -39,8 +38,8 @@ const GamesEdit = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        axios.put(`http://localhost:8000/api/games/${id}`, formData)
-            .then( () => navigate(`/games/view/${id}`) )
+        updateOne(formData)
+            .then ( () => navigate(`/games/view/${id}`) )
             .catch( err => {
                 let errors = err.response.data.errors
                 for (let key in errors){
@@ -52,9 +51,9 @@ const GamesEdit = () => {
     }
 
     const handleDelete = e => {
-        axios.delete(`http://localhost:8000/api/games/${id}`)
+        deleteOne(id)
             .then( () => navigate('/games') )
-            .catch( err => console.log(err) )
+            .catch( err => console.log(err))
     }
 
     return (
