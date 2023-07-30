@@ -38,7 +38,7 @@ const GamesOne = () => {
                 {gameData.emote !== ''?<p>Emote: {gameData.emote}</p>:<></>}
                 <h4>Game Description:</h4>
                 <p>{gameData.description}</p>
-                <div>
+                <div className='buttonContainer'>
                     <Link to={`/games/edit/${gameData._id}`}><button>Edit Game</button></Link>
                     <button onClick={deleteGame}>Delete Game</button>
                 </div>

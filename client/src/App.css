@@ -1,3 +1,8 @@
+* {
+  background-color: black;
+  color: white;
+}
+
 .header {
   padding: 20px;
 }
@@ -14,12 +19,27 @@
 .links {
   margin-left: 20px;
   text-decoration: none;
-  color: black;
+  color: white;
   /* text-decoration: underline; */
 }
 
-.dashboard {
+.content {
   margin-left: 20px;
+}
+
+.listedItems {
+  text-decoration: none;
+  color: skyblue;
+}
+
+.formStyle {
+  margin: 10px;
+  padding: 20px;
+}
+
+.formError {
+  display: flex;
+  gap: 10px;
 }
 
 .errMsg {
@@ -28,8 +48,30 @@
   color: red;
 }
 
+input {
+  background-color: white;
+  color:black
+}
+
 textarea {
   width: 300px;
   height: 150px;
   resize: none;
+  background-color: white;
+  color: black;
+}
+
+button {
+  background-color: white;
+  color: black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.buttonContainer {
+  /* background-color: white; */
+  display: flex;
+  gap: 20px;
 }

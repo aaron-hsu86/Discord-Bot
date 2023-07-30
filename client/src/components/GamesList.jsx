@@ -6,15 +6,15 @@ const GamesList = (props) => {
     const {allGames} = props;
     
     return (
-        <>
+        <div className='content'>
         {allGames.map((game,i) => {
             return (
             <div key={i}>
-                <h3>{i+1} - <Link to={`/games/view/${game._id}`}>{game.title}</Link></h3>
+                <h3>{i+1} - <Link className='listedItems' to={`/games/view/${game._id}`}>{game.title}</Link></h3>
             </div>
             )
         })}
-        </>
+        </div>
     )
 }
 
